@@ -8,19 +8,21 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
-    //
+    // Show students list
     public function index()
     {
         $students = Student::all();
         return view('student.index', compact('students'));
     }
 
+    // Show particular student data
     public function view($id)
     {
         $student = Student::findOrFail($id);
         return view('student.view', compact('student'));
     }
 
+    // Store student data
     public function store(Request $request)
     {
 
@@ -50,6 +52,7 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'Student Added Successful');
     }
 
+    // Show edit student page with prefilled student data
     public function edit($id)
     {
         $student = Student::findOrFail($id);
@@ -61,6 +64,7 @@ class StudentController extends Controller
         return view('student.edit', compact('student'));
     }
 
+    // update student data
     public function update(Request $request, $id)
     {
         $student = Student::findOrFail($id);
@@ -93,6 +97,7 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'Student Updated Successful');
     }
 
+    // delete student data
     public function destroy($id)
     {
         $student = Student::findOrFail($id);

@@ -37,6 +37,9 @@ Route::middleware('IsAdmin')->group(function () {
     });
 })->name('admin.logs');
 
+
+
+
 // demo for CRUD Operations 
 Route::get('/students-list', [StudentController::class, 'index'])->name('student.index');
 Route::view('/add-student', 'student.create')->name('student.create');
