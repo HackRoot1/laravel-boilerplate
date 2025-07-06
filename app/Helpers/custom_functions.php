@@ -10,6 +10,14 @@ if (!function_exists('date_format2')) {
     }
 }
 
+if (!function_exists('uc_first_only')) {
+    function uc_first_only($str)
+    {
+        $string = trim($str);
+        return ucfirst(strtolower($string));;
+    }
+}
+
 
 if (!function_exists('welcome')) {
     function welcome($op, $sb = "something")

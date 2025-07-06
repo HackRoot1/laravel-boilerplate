@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
 
@@ -35,3 +36,12 @@ Route::middleware('IsAdmin')->group(function () {
         return view('activity-logs', compact('logs'));
     });
 })->name('admin.logs');
+
+// demo for CRUD Operations 
+Route::get('/students-list', [StudentController::class, 'index'])->name('student.index');
+Route::view('/add-student', 'student.create')->name('student.create');
+Route::get('/view-student/{id}', [StudentController::class, 'view'])->name('student.view');
+Route::post('/store-student', [StudentController::class, 'store'])->name('student.store');
+Route::get('/students-edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
+Route::put('/students-update/{id}', [StudentController::class, 'update'])->name('student.update');
+Route::delete('/students-delete/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
