@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('date_format2')) {
     function date_format2($date, $format = 'd M Y')
@@ -18,10 +18,17 @@ if (!function_exists('uc_first_only')) {
     }
 }
 
-
-if (!function_exists('welcome')) {
-    function welcome($op, $sb = "something")
+if (!function_exists('breakString')) {
+    function breakString($str)
     {
-        return $op . " " . $sb;
+       $string = str_replace(' ', '_', strtolower(trim($str)));
+        return ucfirst($string);
+    }
+}
+
+if (!function_exists('userHasPermission')) {
+    function userHasPermission($permission)
+    {
+        return Auth::check() && Auth::user()->hasPermission($permission);
     }
 }

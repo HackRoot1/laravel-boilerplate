@@ -12,8 +12,6 @@
 
 <div class="{{ $colClass ?? 'col-md-6' }}">
     <label for="{{ $name }}" class="form-label">{{ $label ?? ucfirst($name) }}</label>
-
-
     <input type="date" id="{{ $name }}" name="{{ $name }}"
         class="{{ $class ?? '' }} @error($name) is-invalid @enderror" placeholder="{{ $placeholder ?? 'YYYY-MM-DD' }}"
         @if (!empty($autofocus)) autofocus @endif @if (!empty($disabled)) disabled @endif

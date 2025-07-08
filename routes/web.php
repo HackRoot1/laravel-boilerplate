@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
@@ -25,6 +23,16 @@ Route::middleware('IsUser')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     })->name('dashboard');
+
+
+    // demo for CRUD Operations 
+    Route::get('/students-list', [StudentController::class, 'index'])->name('student.index')->middleware('permission:create_user');
+    Route::view('/add-student', 'student.create')->name('student.create');
+    Route::get('/view-student/{id}', [StudentController::class, 'view'])->name('student.view');
+    Route::post('/store-student', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/students-edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
+    Route::put('/students-update/{id}', [StudentController::class, 'update'])->name('student.update');
+    Route::delete('/students-delete/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
 });
 
 
@@ -34,17 +42,5 @@ Route::middleware('IsAdmin')->group(function () {
     Route::get('/admin/activity-logs', function () {
         $logs = \App\Models\ActivityLog::with('user')->latest()->paginate(25);
         return view('activity-logs', compact('logs'));
-    });
-})->name('admin.logs');
-
-
-
-
-// demo for CRUD Operations 
-Route::get('/students-list', [StudentController::class, 'index'])->name('student.index');
-Route::view('/add-student', 'student.create')->name('student.create');
-Route::get('/view-student/{id}', [StudentController::class, 'view'])->name('student.view');
-Route::post('/store-student', [StudentController::class, 'store'])->name('student.store');
-Route::get('/students-edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
-Route::put('/students-update/{id}', [StudentController::class, 'update'])->name('student.update');
-Route::delete('/students-delete/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+    })->name('admin.activity.logs');
+});

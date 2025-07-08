@@ -16,7 +16,7 @@
             @if ($errors->has($name)) aria-describedby="{{ $name }}-feedback" @endif>
 
         <label class="form-check-label" for="{{ $name }}">
-            {{ $label ?? ucfirst($name) }}
+            {{ $label ?? breakString($name) }}
         </label>
 
         {{-- Error message --}}
