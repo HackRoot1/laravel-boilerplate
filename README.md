@@ -21,8 +21,67 @@
 
 
 
+## Migration: 
 
+Step 1: Create Model with Migration using following command:
 
+```
+php artisan make:model ModelNameSingular -m
+```
+
+Step 2: Open Migration file and add columns:
+
+```
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name', 255);
+            $table->string('email', 255)->unique();
+            $table->string('password');
+            $table->string('phone', 10)->nullable();
+            $table->unsignedTinyInteger('age')->nullable(); // min:18, max:100
+            $table->string('bio', 500)->nullable();
+            $table->boolean('is_active')->nullable();
+            $table->enum('gender', ['male', 'female', 'other']);
+            $table->foreignId('role_id')->constrained('roles'); // roles table must exist
+            $table->string('profile_picture')->nullable(); // Store path of uploaded image
+            $table->string('website')->nullable();
+            $table->date('dob')->nullable();
+            $table->time('appointment_time')->nullable();
+            $table->string('color_preference')->nullable();
+            $table->decimal('range_input', 4, 2)->nullable(); // values between 1 and 10
+            $table->string('hidden_token')->nullable();
+            $table->boolean('terms')->default(true); // terms checkbox accepted
+
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
+    }
+};
+``` 
+
+### Notes:
+
+- profile_picture stores only the file path or filename. You’ll handle uploads in controller or service logic.
+
+- range_input is defined as a decimal(4,2) to allow numeric input with precision between 1.00 to 10.00.
+
+- terms is stored as a boolean with default true (assuming checkbox value accepted).
+
+- The role_id column assumes you already have a roles table.
 
 
 ## Form Input Lists 
