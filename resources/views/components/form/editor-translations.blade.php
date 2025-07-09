@@ -3,7 +3,7 @@
     $lang = trans('editor');
     $mergedText = [];
     foreach ($en as $key => $value) {
-      $mergedText[$value] = $lang[$key] ?? $value;
+        $mergedText[$value] = $lang[$key] ?? $value;
     }
 @endphp
 <script nonce="{{ $cspNonce }}">

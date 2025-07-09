@@ -1,10 +1,8 @@
 <?php
 /** @var \BookStack\Permissions\PermissionFormData $data */
 ?>
-<form component="entity-permissions"
-      option:entity-permissions:entity-type="{{ $model->getType() }}"
-      action="{{ $model->getUrl('/permissions') }}"
-      method="POST">
+<form component="entity-permissions" option:entity-permissions:entity-type="{{ $model->getType() }}"
+    action="{{ $model->getUrl('/permissions') }}" method="POST">
     {!! csrf_field() !!}
     <input type="hidden" name="_method" value="PUT">
 
@@ -14,14 +12,14 @@
             <p class="text-muted mb-s">
                 {{ trans('entities.permissions_desc') }}
 
-                @if($model instanceof \BookStack\Entities\Models\Book)
+                @if ($model instanceof \BookStack\Entities\Models\Book)
                     <br> {{ trans('entities.permissions_book_cascade') }}
                 @elseif($model instanceof \BookStack\Entities\Models\Chapter)
                     <br> {{ trans('entities.permissions_chapter_cascade') }}
                 @endif
             </p>
 
-            @if($model instanceof \BookStack\Entities\Models\Bookshelf)
+            @if ($model instanceof \BookStack\Entities\Models\Bookshelf)
                 <p class="text-warn">{{ trans('entities.shelves_permissions_cascade_warning') }}</p>
             @endif
         </div>
@@ -35,8 +33,9 @@
 
     <hr>
 
-    <div refs="entity-permissions@role-container" class="item-list mt-m mb-m">
-        @foreach($data->permissionsWithRoles() as $permission)
+    <div
+        refs="entity-permissions@role-container" class="item-list mt-m mb-m">
+        @foreach ($data->permissionsWithRoles() as $permission)
             @include('form.entity-permissions-row', [
                 'permission' => $permission,
                 'role' => $permission->role,
@@ -52,7 +51,7 @@
                         class="bold">{{ trans('entities.permissions_role_override') }}</span></label>
             <select name="role_select" id="role_select" refs="entity-permissions@role-select">
                 <option value="">{{ trans('common.select') }}</option>
-                @foreach($data->rolesNotAssigned() as $role)
+                @foreach ($data->rolesNotAssigned() as $role)
                     <option value="{{ $role->id }}">{{ $role->display_name }}</option>
                 @endforeach
             </select>
@@ -61,26 +60,25 @@
 
     <div class="item-list mt-m mb-xl">
         @include('form.entity-permissions-row', [
-                'role' => $data->everyoneElseRole(),
-                'permission' => $data->everyoneElseEntityPermission(),
-                'entityType' => $model->getType(),
-                'inheriting' => !$model->permissions()->where('role_id', '=', 0)->exists(),
-            ])
+            'role' => $data->everyoneElseRole(),
+            'permission' => $data->everyoneElseEntityPermission(),
+            'entityType' => $model->getType(),
+            'inheriting' => !$model->permissions()->where('role_id', '=', 0)->exists(),
+        ])
     </div>
 
     <hr class="mb-m">
 
     <div class="flex-container-row justify-space-between gap-m wrap">
         <div class="flex min-width-m">
-            @if($model instanceof \BookStack\Entities\Models\Bookshelf)
+            @if ($model instanceof \BookStack\Entities\Models\Bookshelf)
                 <p class="small text-muted mb-none">
                     * {{ trans('entities.shelves_permissions_create') }}
-                </p>
-            @endif
+                </p> @endif
         </div>
         <div class="text-right">
-            <a href="{{ $model->getUrl() }}" class="button outline">{{ trans('common.cancel') }}</a>
-            <button type="submit" class="button">{{ trans('entities.permissions_save') }}</button>
-        </div>
+        <a href="{{ $model->getUrl() }}" class="button outline">{{ trans('common.cancel') }}</a>
+        <button type="submit" class="button">{{ trans('entities.permissions_save') }}</button>
+    </div>
     </div>
 </form>

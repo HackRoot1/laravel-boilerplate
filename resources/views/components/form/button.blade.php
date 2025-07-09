@@ -4,15 +4,14 @@
 @include('components.form.button', [
     'type' => 'submit',
     'value' => 'Sign In',
-    'class' => 'btn-secondary',
+    'class' => 'btn btn-secondary',
     'colClass' => 'col-12',
 ])
 --}}
 
 
-<div class="{{ $colClass ?? 'col-md-6' }}">
-    {{-- Reusable Button Component --}}
-    <button type="{{ $type ?? 'submit' }}" class="btn {{ $class ?? 'btn-primary' }}">
+<div class="{{ $colClass ?? '' }}">
+    <button type="{{ $type ?? 'submit' }}" class="{{ $class ?? 'btn btn-primary' }}">
         {{ $value ?? 'Submit' }}
     </button>
 </div>

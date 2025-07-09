@@ -7,6 +7,7 @@
     'name' => 'email',
     'type' => 'email',
     'colClass' => 'col-12',
+    'required' => true,
     'placeholder' => 'Enter your email',
     'model' => $user ?? null,
     'autofocus' => true,
@@ -15,11 +16,12 @@
 
 <div class="{{ $colClass ?? 'col-md-6' }}">
     {{-- Label for the input --}}
-    <label for="{{ $name }}" class="form-label">{{ $label ?? ucfirst($name) }}</label>
+    <label for="{{ $name }}" class="form-label">{{ $label ?? ucfirst($name) }}@if (!empty($required)) <span class="text-danger">*</span> @endif</label>
 
     {{-- Input Field --}}
     <input type="{{ $type ?? 'text' }}" class="form-control @error($name) is-invalid @enderror" name="{{ $name }}"
         id="{{ $name }}" {{-- Optional Attributes --}}
+        @if (!empty($required)) required @endif
         @if (!empty($placeholder)) placeholder="{{ $placeholder }}" @endif
         @if (!empty($autofocus)) autofocus @endif @if (!empty($disabled)) disabled @endif
         @if (!empty($readonly)) readonly @endif {{-- Value: from old input or model --}}

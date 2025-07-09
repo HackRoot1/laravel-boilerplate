@@ -4,11 +4,12 @@
     'label' => 'I agree to the terms and conditions',
     'model' => $user ?? null,
     'required' => true,
+    'colClass' => 'col-md-6',
 ]) 
 --}}
 
 
-<div class="{{ $colClass ?? 'col-md-6' }}">
+<div class="{{ $colClass ?? '' }}">
     <div class="form-check">
         <input type="checkbox" name="{{ $name }}" id="{{ $name }}"
             class="form-check-input @error($name) is-invalid @enderror" value="{{ $value ?? '1' }}"
@@ -16,7 +17,7 @@
             @if ($errors->has($name)) aria-describedby="{{ $name }}-feedback" @endif>
 
         <label class="form-check-label" for="{{ $name }}">
-            {{ $label ?? breakString($name) }}
+            {{ $label ?? breakString($name) }} 
         </label>
 
         {{-- Error message --}}

@@ -16,6 +16,7 @@ Route::post('/auth-check', [AuthController::class, 'authCheck'])->name('auth.che
 
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::view('/demo-form-inputs', 'demo-form')->name('demo-form');
 
 
 

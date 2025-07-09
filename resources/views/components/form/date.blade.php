@@ -5,12 +5,12 @@
     'model' => $user ?? null,
     'autofocus' => true,
     'placeholder' => 'YYYY-MM-DD',
-    'colClass' => 'col-12',
+    'colClass' => 'col-md-6',
 ])
 --}}
 
 
-<div class="{{ $colClass ?? 'col-md-6' }}">
+<div class="{{ $colClass ?? '' }}">
     <label for="{{ $name }}" class="form-label">{{ $label ?? ucfirst($name) }}</label>
     <input type="date" id="{{ $name }}" name="{{ $name }}"
         class="{{ $class ?? '' }} @error($name) is-invalid @enderror" placeholder="{{ $placeholder ?? 'YYYY-MM-DD' }}"
