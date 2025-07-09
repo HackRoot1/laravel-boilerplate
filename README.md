@@ -17,7 +17,11 @@
 15. Captcha added 
 16. OTP Verification 
 17. Forgot Password checking 
-18. 
+18. Data backup for security
+19. Debug mode: spatie package
+20. N + 1 query 
+21. Fake data generator - fakerphp/faker
+22. Testing 
 
 
 
