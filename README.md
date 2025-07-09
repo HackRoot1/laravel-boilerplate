@@ -90,5 +90,4 @@ $validator = Validator::make($requestData, [
     'hidden_token'      => 'nullable|string',
     'terms'             => 'accepted', // For checkbox
 ]);
-
 ```
