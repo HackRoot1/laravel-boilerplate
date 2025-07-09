@@ -65,6 +65,8 @@
 
 ## Validations List : 
 
+
+```
 use Illuminate\Support\Facades\Validator;
 
 $requestData = $request->all();
@@ -88,3 +90,5 @@ $validator = Validator::make($requestData, [
     'hidden_token'      => 'nullable|string',
     'terms'             => 'accepted', // For checkbox
 ]);
+
+```
