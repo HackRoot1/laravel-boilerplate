@@ -27,6 +27,7 @@
 
 ## Form Input Lists 
 
+```
 <form method="POST" enctype="multipart/form-data">
     @csrf
     <input type="text" name="name">
@@ -57,7 +58,7 @@
     <button type="submit">Submit</button>
 </form>
 
-
+```
 
 
 
