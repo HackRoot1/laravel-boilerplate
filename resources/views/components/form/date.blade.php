@@ -1,9 +1,10 @@
 {{-- 
 @include('components.form.date', [
-    'name' => 'dob',
+    'name' => 'date_of_birth',
     'label' => 'Date of Birth',
     'model' => $user ?? null,
     'autofocus' => true,
+    'disabled' => true,
     'placeholder' => 'YYYY-MM-DD',
     'colClass' => 'col-md-6',
 ])
@@ -11,7 +12,7 @@
 
 
 <div class="{{ $colClass ?? '' }}">
-    <label for="{{ $name }}" class="form-label">{{ $label ?? ucfirst($name) }}</label>
+    <label for="{{ $name }}" class="form-label">{{ $label ?? breakString($name) }}</label>
     <input type="date" id="{{ $name }}" name="{{ $name }}"
         class="{{ $class ?? '' }} @error($name) is-invalid @enderror" placeholder="{{ $placeholder ?? 'YYYY-MM-DD' }}"
         @if (!empty($autofocus)) autofocus @endif @if (!empty($disabled)) disabled @endif
