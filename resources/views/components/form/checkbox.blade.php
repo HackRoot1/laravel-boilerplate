@@ -2,6 +2,7 @@
 @include('components.form.checkbox', [
     'name' => 'terms',
     'label' => 'I agree to the terms and conditions',
+    'value' => 'term1',
     'model' => $user ?? null,
     'required' => true,
     'colClass' => 'col-md-6',
